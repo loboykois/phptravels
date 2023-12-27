@@ -9,7 +9,7 @@ export class Header {
 
   public constructor(private readonly page: Page) {
     this.logo = page.locator(".navbar-brand");
-    this.navigation = new Navigation();
+    this.navigation = new Navigation(page);
     this.authorization = new Authorization();
   }
 }

@@ -1,1 +1,11 @@
-export class Navigation {}
+import { Page } from "@playwright/test";
+
+export class Navigation {
+  public constructor(private readonly page: Page) {
+    this.page = page;
+  }
+
+  public async selectItem(item: string): Promise<void> {
+    await this.page.locator(`ul.nav-bar > li.nav-item > a:has-text('${item}')`).click();
+  }
+}

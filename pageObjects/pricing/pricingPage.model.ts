@@ -1,5 +1,6 @@
 export enum PricingSectionType {
   startup = "Startup",
-  business = "Business",
   agency = "Agency",
+  business = "Business",
+  enterprise = "Enterprise",
 }

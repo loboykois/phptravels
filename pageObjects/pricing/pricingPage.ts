@@ -1,17 +1,29 @@
+import { Page } from "@playwright/test";
 import { BasePage } from "../basePage";
-// import { PricingSectionType } from "./pricingPage.model";
-// import { PricingSection } from "./pricingSection";
+import { PricingCardsSection } from "./pricingCardsSection";
 
 export class PricingPage extends BasePage {
-  protected get path(): string {
-    return "pricing";
+  private path: string;
+
+  public constructor(
+    protected readonly page: Page,
+    path: string = "pricing",
+  ) {
+    super(page);
+    this.path = path;
   }
 
-  // public async getSections(): Promise<PricingSection[]> {
-  //   // get sections array
-  // }
+  public async navigate(): Promise<void> {
+    await this.page.goto(this.path);
+  }
 
-  // public async getSection(sectionType: PricingSectionType): Promise<PricingSection> {
-  //   //  get section
-  // }
+  public async getPricingCards(): Promise<PricingCardsSection[]> {
+    const cards = await this.page.locator(".princing-section > .container > .row > div.col-12").all();
+
+    return cards.map((card) => new PricingCardsSection(card));
+  }
 }
+
+// protected get path(): string {
+//   return "pricing";
+// }
