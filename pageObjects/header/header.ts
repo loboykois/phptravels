@@ -3,9 +3,9 @@ import { Authorization } from "./authorization";
 import { Navigation } from "./navigation";
 
 export class Header {
-  private readonly logo: Locator;
-  private readonly navigation: Navigation;
-  private readonly authorization: Authorization;
+  public readonly logo: Locator;
+  public readonly navigation: Navigation;
+  public readonly authorization: Authorization;
 
   public constructor(private readonly page: Page) {
     this.logo = page.locator(".navbar-brand");

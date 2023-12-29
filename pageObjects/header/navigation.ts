@@ -6,6 +6,10 @@ export class Navigation {
   }
 
   public async selectItem(item: string): Promise<void> {
-    await this.page.locator(`ul.nav-bar > li.nav-item > a:has-text('${item}')`).click();
+    await this.page
+      .locator("#mynavbar")
+      .getByRole("link", { name: `${item}` })
+      .click();
+    // await this.page.locator(`ul > li.nav-item > a:has-text('${item}')`).click();
   }
 }

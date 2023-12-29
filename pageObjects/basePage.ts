@@ -16,9 +16,3 @@ export abstract class BasePage {
     await this.page.goto(path);
   }
 }
-
-// protected abstract get path(): string;
-
-// public async navigate(): Promise<void> {
-//   await this.page.goto(this.path);
-// }
