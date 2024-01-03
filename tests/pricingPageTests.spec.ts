@@ -1,14 +1,13 @@
 import { expect } from "@playwright/test";
 import { describe } from "node:test";
 import { test } from "../pageObjects/fixtures/myFixtures";
+import { NavigationItems } from "../pageObjects/header/header.model";
 
 describe("Pricing page tests", () => {
-  test("should navigate on pricing page when pricing tab is clicked on menu", async ({ pricingPage }) => {
-    // await pricingPage.navigate();
+  test("should navigate on pricing page when pricing nav-item is selected", async ({ page, demoPage }) => {
+    await demoPage.navigate();
+    await demoPage.header.navigation.selectTab(NavigationItems.pricing);
 
-    await pricingPage.header.navigation.selectItem("Pricing");
-
-    // await pricingPage.header.navigation.selectItem(menuItem);
-    expect(1).toBe(1);
+    await expect(page).toHaveURL("/pricing");
   });
 });
