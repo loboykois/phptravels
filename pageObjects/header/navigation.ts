@@ -9,6 +9,10 @@ export class Navigation {
   }
 
   public async selectTab(navItem: string): Promise<void> {
-    await this.navbar.getByText(navItem).click();
+    await this.navbar.getByText(navItem).first().click();
+  }
+
+  public async selectDropdownTab(navItem: string): Promise<void> {
+    await this.navbar.getByRole("link", { name: `${navItem}` }).click();
   }
 }
