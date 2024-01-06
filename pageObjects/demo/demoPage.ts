@@ -15,8 +15,4 @@ export class DemoPage extends BasePage {
   public async navigate(): Promise<void> {
     await this.page.goto(this.path);
   }
-
-  // public async navigate(): Promise<void> {
-  //   await this.page.goto(this.path);
-  // }
 }
