@@ -14,6 +14,8 @@ test.describe("Themes page tests", () => {
     //   value: "transform: translateY(-476.237px); transition: all 2s ease-in-out 0s;",
     // };
 
+    // try to set viewPort definition and try to check style="transform" properties on element
+
     await expect(page).toHaveURL(Routes.themes);
   });
 });
