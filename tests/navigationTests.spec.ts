@@ -29,15 +29,13 @@ test.describe("Navigation tests", () => {
       await demoPage.header.navigation.selectDropdownTab(CompanyDropdown.blogs);
       const blogPage = await newPage;
 
-      // why test failed if waitForLoadState is using?
-      // await blogPage.waitForLoadState("load");
-      // await blogPage.waitForURL(Routes.blogs);
-      // await blogPage.bringToFront();
+      await blogPage.waitForLoadState("domcontentloaded");
+      await blogPage.waitForURL(Routes.blogs);
+      await blogPage.bringToFront();
 
       const url = blogPage.url();
 
       await expect(blogPage).toHaveURL(Routes.blogs);
-      // - failed after second or third retry in ui mode / reason: Test timeout of 5000ms exceeded
       expect(url).toBe(`${baseURL}${Routes.blogs}`);
     });
   });

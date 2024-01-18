@@ -1,21 +1,19 @@
 import { expect } from "@playwright/test";
 import { test } from "../pageObjects/fixtures/myFixtures";
-import { Routes } from "../pageObjects/routes";
 
 test.describe("Themes page tests", () => {
-  test("should scrolling card when mouse is hovered on it", async ({ page, themesPage }) => {
+  test("should scrolling card when mouse is hovered on it", async ({ themesPage }) => {
     await themesPage.navigate();
 
-    // const cardsList = await themesPage.getCards();
-    // const card = cardsList[1];
+    const cards = await themesPage.getCards();
+    const card = cards[0];
 
-    // const stylesOnHover = {
-    //   name: "style",
-    //   value: "transform: translateY(-476.237px); transition: all 2s ease-in-out 0s;",
-    // };
+    const imageStyleTransform = await card.getImageStyle("transform");
 
-    // try to set viewPort definition and try to check style="transform" properties on element
+    await card.hover();
 
-    await expect(page).toHaveURL(Routes.themes);
+    const imageStyleAfterHover = await card.getImageStyle("transform");
+
+    expect(imageStyleTransform).not.toEqual(imageStyleAfterHover);
   });
 });
