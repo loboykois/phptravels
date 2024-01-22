@@ -15,7 +15,7 @@ export class ThemeCard {
     this.cardContainer.locator(".image");
   }
 
-  public async getImageStyle(propertyName: string): Promise<string> {
+  public async getCssProperty(propertyName: string): Promise<string> {
     const element = this.cardContainer.locator(".image");
 
     const transformStyle = await element.evaluate((el, prop) => {

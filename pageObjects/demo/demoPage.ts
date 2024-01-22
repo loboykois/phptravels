@@ -1,8 +1,10 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "../basePage";
+import { DemoPageForm } from "./demoPageForm";
 
 export class DemoPage extends BasePage {
-  private path: string;
+  private readonly path: string;
+  private form: DemoPageForm;
 
   public constructor(
     protected readonly page: Page,
@@ -10,6 +12,7 @@ export class DemoPage extends BasePage {
   ) {
     super(page);
     this.path = path;
+    this.form = new DemoPageForm(page);
   }
 
   public async navigate(): Promise<void> {

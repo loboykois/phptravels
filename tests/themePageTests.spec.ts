@@ -8,12 +8,10 @@ test.describe("Themes page tests", () => {
     const cards = await themesPage.getCards();
     const card = cards[0];
 
-    const imageStyleTransform = await card.getImageStyle("transform");
-
+    const imageStyleBeforeHover = await card.getCssProperty("transform");
     await card.hover();
+    const imageStyleAfterHover = await card.getCssProperty("transform");
 
-    const imageStyleAfterHover = await card.getImageStyle("transform");
-
-    expect(imageStyleTransform).not.toEqual(imageStyleAfterHover);
+    expect(imageStyleBeforeHover).not.toEqual(imageStyleAfterHover);
   });
 });

@@ -2,8 +2,10 @@ import { test as base } from "@playwright/test";
 import { DemoPage } from "../demo/demoPage";
 import { PricingPage } from "../pricing/pricingPage";
 import { ThemesPage } from "../themes/themesPage";
+import { TravelsPage } from "../travels/travelsPage";
 
 type MyPages = {
+  travelsPage: TravelsPage;
   pricingPage: PricingPage;
   demoPage: DemoPage;
   themesPage: ThemesPage;
@@ -21,5 +23,9 @@ export const test = base.extend<MyPages>({
   themesPage: async ({ page }, use) => {
     const themesPage = new ThemesPage(page);
     await use(themesPage);
+  },
+  travelsPage: async ({ page }, use) => {
+    const travelsPage = new TravelsPage(page);
+    await use(travelsPage);
   },
 });
