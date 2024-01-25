@@ -4,7 +4,7 @@ import { DemoPageForm } from "./demoPageForm";
 
 export class DemoPage extends BasePage {
   private readonly path: string;
-  private form: DemoPageForm;
+  public form: DemoPageForm;
 
   public constructor(
     protected readonly page: Page,
