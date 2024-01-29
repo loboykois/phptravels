@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { FormDataDemo } from "./demoPage.model";
+import { FormDataDemo, defineEquationOperator } from "./demoPage.model";
 
 // TODO: add eslint rule with missing await
 
@@ -15,22 +15,18 @@ export class DemoPageForm {
   }
 
   public async fillFirstName(firstName: string): Promise<void> {
-    // await this.form.getByLabel("First Name").fill(firstName);
     await this.form.locator("[name='first_name']").fill(firstName);
   }
 
   public async fillLastName(lastName: string): Promise<void> {
-    // await this.form.getByLabel("Last Name").fill(lastName);
     await this.form.locator("[name='last_name']").fill(lastName);
   }
 
   public async fillBusinessName(businessName: string): Promise<void> {
-    // await this.form.getByLabel("Business Name").fill(businessName);
     await this.form.locator("[name='business_name']").fill(businessName);
   }
 
   public async fillEmail(email: string): Promise<void> {
-    // await this.form.getByLabel("Email").fill(email);
     await this.form.locator("[name='email']").fill(email);
   }
 
@@ -58,7 +54,13 @@ export class DemoPageForm {
   public async solveCaptcha(): Promise<void> {
     const numb1 = await this.form.locator("#numb1").innerText();
     const numb2 = await this.form.locator("#numb2").innerText();
-    const result = Number(numb1) + Number(numb2);
-    await this.form.getByPlaceholder("Result ?").fill(`${result}`);
+
+    const equation = await this.form.locator("h4").innerText();
+    const equationResult = defineEquationOperator(equation, Number(numb1), Number(numb2));
+
+    // console.log(operator);
+    // const result = Number(numb1) + Number(numb2);
+    // await this.form.getByPlaceholder("Result ?").fill(`${result}`);
+    await this.form.getByPlaceholder("Result ?").fill(`${equationResult}`);
   }
 }
